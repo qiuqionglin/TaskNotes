@@ -1,122 +1,123 @@
 # TaskNotes
 
-A lightweight desktop to-do app with daily task management, desktop reminders, and GitHub-based cloud sync.
+一款轻量级桌面任务管理工具，支持每日任务管理、桌面提醒和 GitHub 云端同步。
 
-![TaskNotes](https://img.shields.io/badge/Electron-28-blue) ![React](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![License](https://img.shields.io/badge/license-MIT-green)
-
----
-
-## Features
-
-- **Daily Task Management** — Create, edit, complete and delete tasks organized by date
-- **Desktop Reminders** — Native OS notifications with in-app reminder banners
-- **GitHub Auto-Sync** — Backup tasks to a GitHub repository with auto-sync support
-- **System Tray** — Runs quietly in the background with tray icon controls
-- **Dark/Modern UI** — Clean purple-themed interface
-- **Cross-Platform** — Windows, macOS, and Linux support
+![Electron](https://img.shields.io/badge/Electron-28-blue) ![React](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
-## Screenshots
+## 功能特性
 
-| Today's Tasks | Settings | Reminder Banner |
+- **每日任务管理** — 按日期创建、编辑、完成和删除任务
+- **桌面提醒** — 原生系统通知 + 应用内提醒横幅
+- **GitHub 自动同步** — 任务数据备份到 GitHub 仓库，支持自动同步
+- **系统托盘** — 后台静默运行，托盘图标快速操作
+- **紫蓝现代主题** — 简洁美观的紫色系界面
+- **跨平台** — 支持 Windows、macOS、Linux
+
+---
+
+## 截图
+
+| 今日任务 | 设置页面 | 提醒横幅 |
 |:---:|:---:|:---:|
-| ![Today](screenshots/screenshot1.png) | ![Settings](screenshots/screenshot2.png) | ![Reminder](screenshots/screenshot3.png) |
+| ![今日任务](screenshots/screenshot1.png) | ![设置](screenshots/screenshot2.png) | ![提醒](screenshots/screenshot3.png) |
 
 ---
 
-## Getting Started
+## 快速开始
 
-### Prerequisites
+### 环境要求
 
 - Node.js 18+
 - npm 9+
 - Git
 
-### Installation
+### 安装运行
 
 ```bash
-# Clone the repository
+# 克隆仓库
 git clone https://github.com/qiuqionglin/TaskNotes.git
 cd TaskNotes
 
-# Install dependencies
+# 安装依赖
 npm install
 
-# Start in development mode
+# 开发模式启动
 npm run dev
 ```
 
-### Build
+### 构建应用
 
 ```bash
-# Build for current platform (portable .exe for Windows)
+# 构建当前平台的可移植版本（Windows 为 .exe）
 npm run package
 
-# Build installer
+# 构建安装包
 npm run package:installer
 ```
 
-The output will be in the `release/` directory.
+构建产物位于 `release/` 目录。
 
 ---
 
-## Usage Guide
+## 使用教程
 
-### Configure GitHub Sync
+### 配置 GitHub 同步
 
-1. Go to **Settings** page
-2. Generate a GitHub Personal Access Token:
+1. 进入 **设置** 页面
+2. 生成 GitHub 个人访问令牌（Personal Access Token）：
    - GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
-   - Grant `repo` permission (full control of private repositories)
-3. Fill in the settings:
-   - **GitHub Token**: `ghp_xxxxxxxxxxxxx`
-   - **Repository**: `yourusername/your-repo` (e.g. `qiuqionglin/task-notes`)
-   - **Branch**: `main` (or your preferred branch)
-   - **Root Path**: `tasks` (the folder path in your repo)
-4. Click **保存设置** (Save Settings), then click **立即同步** (Sync Now)
+   - 勾选 `repo` 权限（完全控制私有仓库）
+   - 点击 Generate token，复制生成的 token
+3. 填写设置：
+   - **GitHub Token**：填入 `ghp_xxxxxxxxxxxxx`
+   - **仓库名**：格式 `用户名/仓库名`，例如 `qiuqionglin/task-notes`
+   - **分支名**：默认 `main`
+   - **根目录路径**：仓库中存储任务的文件夹，例如 `tasks`
+4. 点击 **保存设置**，然后点击 **立即同步** 测试
 
-Your tasks will be synced to `tasks/YYYY/MM/YYYY-MM-DD.json` in your repository.
+同步成功后，任务将按日期存储到仓库的 `tasks/YYYY/MM/YYYY-MM-DD.json`。
 
-### Create a Task
+### 创建任务
 
-1. Click **✨ 新建任务** (New Task) on the Today page
-2. Fill in:
-   - **Title** (required)
-   - **Content** (optional)
-   - **Date** — defaults to today, can be any date
-   - **Reminder** — enable and set a time to receive a desktop notification
-3. Click **保存** (Save)
+1. 在今日页面点击 **✨ 新建任务**
+2. 填写：
+   - **标题**（必填）
+   - **内容**（可选）
+   - **日期** — 默认为今天，可选择任意日期
+   - **提醒** — 开启并设置时间，到点会收到桌面通知
+3. 点击 **保存**
 
-### Change Data Directory
+### 修改数据存储路径
 
-By default, data is stored in:
-- **Windows**: `C:\Users\<username>\AppData\Roaming\task-notes\task-notes-data`
+默认数据存储在：
+- **Windows**：`C:\Users\<用户名>\AppData\Roaming\task-notes\task-notes-data`
 
-To change this location:
-1. Go to **Settings** → **💾 数据存储**
-2. Edit the **数据目录** (Data Directory) path
-3. Save — the change takes effect after restarting the app
+修改路径：
+1. 进入 **设置** → **💾 数据存储**
+2. 修改 **数据目录** 路径
+3. 保存后重启应用生效
 
 ---
 
-## Project Structure
+## 项目结构
 
 ```
 task-notes/
-├── electron/               # Main process (Electron)
-│   ├── main.ts            # Entry point, window management
-│   ├── preload.ts         # Context bridge (IPC exposure)
+├── electron/               # 主进程（Electron）
+│   ├── main.ts            # 入口，窗口管理
+│   ├── preload.ts         # 上下文桥接（IPC 暴露）
 │   ├── ipc/
-│   │   └── handlers.ts    # IPC request handlers
+│   │   └── handlers.ts    # IPC 请求处理
 │   └── services/
-│       ├── store.ts       # Local data storage (JSON files)
-│       ├── github.ts      # GitHub sync via Octokit
-│       ├── reminder.ts    # Desktop notifications & timers
-│       ├── logger.ts      # Application logging
-│       └── tray.ts        # System tray management
-├── src/                   # Renderer process (React)
-│   ├── App.tsx           # Root component
+│       ├── store.ts       # 本地数据存储（JSON 文件）
+│       ├── github.ts      # 通过 Octokit 实现 GitHub 同步
+│       ├── reminder.ts    # 桌面通知与定时器
+│       ├── logger.ts      # 应用日志
+│       └── tray.ts        # 系统托盘管理
+├── src/                   # 渲染进程（React）
+│   ├── App.tsx           # 根组件
 │   ├── pages/
 │   │   ├── TodayPage.tsx
 │   │   ├── HistoryPage.tsx
@@ -127,19 +128,19 @@ task-notes/
 │   │   ├── TaskItem.tsx
 │   │   └── TaskModal.tsx
 │   ├── types/
-│   │   └── index.ts      # Shared TypeScript types
+│   │   └── index.ts      # 共享 TypeScript 类型
 │   └── styles/
 │       └── global.css
-├── webpack.*.config.js   # Webpack configs (main, renderer)
+├── webpack.*.config.js   # Webpack 配置（主进程、渲染进程）
 ├── package.json
 └── tsconfig.json
 ```
 
 ---
 
-## Data Format
+## 数据格式
 
-Tasks are stored as JSON files organized by date:
+任务以 JSON 文件按日期存储：
 
 ```json
 // tasks/2026/04/2026-04-06.json
@@ -149,7 +150,7 @@ Tasks are stored as JSON files organized by date:
     {
       "id": "uuid-v4",
       "title": "Review PR",
-      "content": "Check the new authentication module",
+      "content": "检查新的认证模块",
       "taskDate": "2026-04-06",
       "remindAt": "2026-04-06T14:00:00.000Z",
       "isReminderEnabled": true,
@@ -165,27 +166,27 @@ Tasks are stored as JSON files organized by date:
 
 ---
 
-## Configuration
+## 配置项说明
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| `githubToken` | GitHub personal access token | `""` |
-| `githubRepo` | Target repository (owner/repo) | `""` |
-| `githubBranch` | Branch to sync to | `"main"` |
-| `githubBasePath` | Root path in the repo | `"tasks"` |
-| `autoSyncEnabled` | Enable auto-sync | `false` |
-| `autoSyncIntervalMinutes` | Auto-sync interval | `30` |
-| `soundEnabled` | Play sound on reminder | `true` |
-| `dataDir` | Local data directory | (system default) |
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| `githubToken` | GitHub 个人访问令牌 | `""` |
+| `githubRepo` | 目标仓库（owner/repo） | `""` |
+| `githubBranch` | 同步分支 | `"main"` |
+| `githubBasePath` | 仓库中任务文件的根目录 | `"tasks"` |
+| `autoSyncEnabled` | 开启自动同步 | `false` |
+| `autoSyncIntervalMinutes` | 自动同步间隔（分钟） | `30` |
+| `soundEnabled` | 提醒时播放提示音 | `true` |
+| `dataDir` | 本地数据存储目录 | （系统默认） |
 
 ---
 
-## Contributing
+## 许可证
 
-Issues and pull requests are welcome!
+MIT License — 详见 [LICENSE](LICENSE)。
+
+---
+
+## 欢迎贡献
+
+Issues 和 Pull Requests 皆欢迎！
