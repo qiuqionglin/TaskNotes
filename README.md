@@ -19,7 +19,9 @@ A lightweight desktop to-do app with daily task management, desktop reminders, a
 
 ## Screenshots
 
-> _(Add your screenshots here)_
+| Today's Tasks | Settings | Reminder Banner |
+|:---:|:---:|:---:|
+| ![Today](screenshots/screenshot1.png) | ![Settings](screenshots/screenshot2.png) | ![Reminder](screenshots/screenshot3.png) |
 
 ---
 
